@@ -1,0 +1,667 @@
+@import "reset";
+@import "global";
+@import "vars";
+@import "mixins";
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 43px 0 35px;
+  }
+  &__logo {
+    padding-left: 34px;
+    font-size: 14px;
+    color: $green;
+    font-weight: 700;
+    letter-spacing: 2px;
+    position: relative;
+    &::before {
+      content: "";
+      background-image: url(../images/dist/logo.svg);
+      background-repeat: no-repeat;
+      width: 25px;
+      height: 24px;
+      position: absolute;
+      top: -35%;
+      left: 0;
+    }
+  }
+  &__menu {
+    @include phone {
+      display: none;
+    }
+  }
+  &__menu--open {
+    display: block;
+  }
+  &__menu-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 45px;
+    @include phone {
+      flex-direction: column;
+      gap: 40px;
+      background-color: $title-bg;
+      padding: 150px 60px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+    }
+  }
+  &__list-item {
+    color: $white;
+    &:hover {
+      font-size: 15px;
+      color: $green;
+      font-weight: 700;
+    }
+  }
+  &__menu-btn {
+    flex-direction: column;
+    gap: 5px;
+    background-color: inherit;
+    display: none;
+    @include phone {
+      display: flex;
+    }
+    span {
+      display: block;
+      width: 30px;
+      height: 2px;
+      background-color: #fff;
+    }
+  }
+  &__btn-close {
+    display: none;
+    @include phone {
+      display: block;
+      position: absolute;
+      top: 30px;
+      right: 30px;
+    }
+  }
+}
+.title {
+  background-image: url(../images/dist/bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 171px;
+  padding-bottom: 164px;
+  @include phone {
+    padding-bottom: 50px;
+    background-position: center;
+  }
+  &__inner {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__desc {
+    max-width: 595px;
+    margin-top: 16px;
+    margin-bottom: 40px;
+  }
+  &__btn {
+    color: $black;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 3.6px;
+    padding: 25px 58px;
+    background-color: $green;
+    border-radius: 43px;
+    margin-bottom: 74px;
+  }
+}
+.info {
+  display: flex;
+  @include laptop {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+  }
+  justify-content: space-between;
+  gap: 90px;
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 15px 0;
+    p {
+      color: $white;
+      padding-top: 36px;
+    }
+  }
+  &__time {
+    position: relative;
+    &::before {
+      content: "";
+      background-image: url(../images/dist/time.svg);
+      background-repeat: no-repeat;
+      width: 21px;
+      height: 22px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  &__adress {
+    position: relative;
+    &::before {
+      content: "";
+      background-image: url(../images/dist/geo.svg);
+      background-repeat: no-repeat;
+      width: 21px;
+      height: 22px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  &__number {
+    position: relative;
+    &::before {
+      content: "";
+      background-image: url(../images/dist/tel.svg);
+      background-repeat: no-repeat;
+      width: 21px;
+      height: 22px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+.about {
+  padding: 105px 65px 90px;
+  border-radius: 6px;
+  background: $dark;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  @include phone {
+    padding: 30px 20px 25px;
+  }
+  &__title {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 60px;
+    @include phone {
+      margin-bottom: 25px;
+    }
+    &::before {
+      content: "ABOUT";
+      position: absolute;
+      top: -40%;
+      left: 0;
+      right: 0;
+      color: $title-bg;
+      font-size: 100px;
+      font-weight: 900;
+      line-height: 100%;
+      letter-spacing: 20px;
+      z-index: -1;
+      @include phone {
+        font-size: 70px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+  p {
+    max-width: 734px;
+    margin: 0 auto;
+    margin-bottom: 90px;
+    @include phone {
+      margin-bottom: 30px;
+    }
+  }
+}
+
+.work {
+  &__title {
+    &::before {
+      content: "WORK";
+    }
+  }
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include phone {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    justify-content: space-between;
+    gap: 30px;
+  }
+  &__card {
+    padding: 24px;
+    border-radius: 6px;
+    background: $dark;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+    &:hover {
+      color: $hover;
+      background-color: $green;
+    }
+    &:hover h4 {
+      color: $hover;
+    }
+    &:hover h4::after {
+      background-color: $hover;
+    }
+    h4 {
+      position: relative;
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+      &::after {
+        content: "";
+        width: 56px;
+        height: 2px;
+        background-color: $green;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+    }
+    p {
+      font-size: 14px;
+      line-height: 170%;
+    }
+  }
+}
+.dishes {
+  &__title::before {
+    content: "DISH";
+  }
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    @include laptop {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include phone {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  img {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    width: 100%;
+    max-width: 100%;
+  }
+  &__card {
+    position: relative;
+    border-radius: 6px;
+    background: #252525;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+    &:hover .dishes__btn {
+      background-color: $green;
+    }
+    &:hover .dishes__stars::before {
+      background-image: url(../images/dist/stars-yellow.svg);
+    }
+  }
+  &__link {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+  }
+  &__card-content {
+    padding: 30px;
+  }
+  &__card-title {
+    color: $title;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0;
+  }
+  &__card-subt {
+    font-size: 12px;
+    line-height: 16px;
+    margin-bottom: 20px;
+  }
+  &__card-desc {
+    color: $cardDesc;
+    font-size: 13px;
+    line-height: 18px;
+    margin-bottom: 20px;
+  }
+  &__card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__stars {
+    font-weight: 900;
+    font-size: 12px;
+    line-height: 250%;
+    padding-left: 134px;
+    position: relative;
+    &::before {
+      content: "";
+      background-image: url(../images/dist/starsGray.svg);
+      background-repeat: no-repeat;
+      width: 120px;
+      height: 20px;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+  }
+  &__btn {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 10px;
+    line-height: 400%;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0 32px;
+    background-color: transparent;
+    border: 3px solid $title-bg;
+    border-radius: 30px;
+  }
+}
+
+.chefs {
+  &__title::before {
+    content: "CHEFS";
+  }
+  &__cards {
+    display: flex;
+    @include laptop {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 60px;
+    }
+    gap: 30px;
+  }
+  &__info {
+    position: relative;
+    padding-left: 89px;
+    margin-bottom: 35px;
+    &::before {
+      content: "";
+      background-image: url(../images/dist/chefAvatar1.svg);
+      width: 65px;
+      height: 65px;
+      position: absolute;
+      top: -10px;
+      left: 0;
+    }
+  }
+  &__info-second::before {
+    background-image: url(../images/dist/chefAvatar2.svg);
+  }
+  &__info-third::before {
+    background-image: url(../images/dist/chefAvatar3.svg);
+  }
+  &__name {
+    margin-bottom: 6px;
+    font-size: 18px;
+    line-height: 1;
+  }
+  &__images {
+    display: flex;
+    gap: 30px;
+  }
+}
+
+.recipes {
+  &__title::before {
+    content: "RECIPES";
+  }
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    @include phone {
+      grid-template-columns: repeat(1, 1fr);
+      grid-template-rows: repeat(1, 1fr);
+    }
+    gap: 30px;
+  }
+  &__main-card {
+    grid-row: span 3;
+    padding: 60px 90px;
+    background-image: url(../images/dist/recipes-big.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $white;
+  }
+  &__tag {
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 1.25px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+  }
+  &__tag-main {
+    margin-bottom: 65px;
+  }
+  &__data {
+    font-size: 14px;
+  }
+  &__data-main {
+    margin-bottom: 25px;
+  }
+  &__card-title {
+    font-size: 24px;
+    line-height: 40px;
+    text-align: center;
+    margin-bottom: 45px;
+  }
+  &__author {
+    font-size: 14px;
+    margin-bottom: 60px;
+  }
+  &__footer {
+    display: flex;
+    gap: 32px;
+  }
+  &__view {
+    font-size: 12px;
+    position: relative;
+    padding-left: 36px;
+    &::before {
+      content: "";
+      background-image: url(../images/dist/view-white.svg);
+      background-repeat: no-repeat;
+      width: 22px;
+      height: 17px;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+  }
+  &__comment {
+    font-size: 12px;
+    position: relative;
+    padding-left: 36px;
+    &::before {
+      content: "";
+      background-image: url(../images/dist/comment-white.svg);
+      background-repeat: no-repeat;
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+  }
+  &__card {
+    border-radius: 6px;
+    background: $dark;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+    padding: 30px 30px 25px 30px;
+    p {
+      color: $white;
+      margin-bottom: 10px;
+    }
+    &:hover {
+      background: $green;
+      color: $dark;
+    }
+    &:hover p {
+      color: $dark;
+    }
+    &:hover .recipes__view::before {
+      background-image: url(../images/dist/view-black.svg);
+    }
+    &:hover .recipes__comment::before {
+      background-image: url(../images/dist/comment-black.svg);
+    }
+    &:hover .tag {
+      color: $white;
+      background-color: $dark;
+    }
+  }
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__left {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+  &__right {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+  &__card--bg {
+    background-image: url(../images/dist/recipes-mini.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+.socials {
+  margin-bottom: 120px;
+  &__title::before {
+    content: "SOCIAL";
+  }
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    @include laptop {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include phone {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    gap: 30px;
+  }
+  &__card {
+    filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.1));
+    font-size: 14px;
+    background-color: $dark;
+    border-radius: 8px;
+  }
+  &__card-header {
+    padding: 30px;
+    border-bottom: 1px solid $title-bg;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 30px;
+  }
+  &__name {
+    position: relative;
+    padding-left: 60px;
+    &::before {
+      content: "";
+      background-repeat: no-repeat;
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      top: -5px;
+      left: 0;
+    }
+  }
+  &__name-twi::before {
+    background-image: url(../images/dist/twitter.svg);
+  }
+  &__name-inst::before {
+    background-image: url(../images/dist/instagram.svg);
+  }
+  &__name-facebook::before {
+    background-image: url(../images/dist/facebook.svg);
+  }
+  button {
+    color: $gray;
+    font-size: 10px;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background-color: inherit;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 15px 20px;
+  }
+  &__content {
+    padding: 20px 40px 20px 30px;
+  }
+  &__data {
+    color: $gray;
+    margin-bottom: 10px;
+  }
+  p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 10px;
+  }
+  &__username {
+    color: $green;
+  }
+  &__images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.footer {
+  background-color: $dark;
+  &__inner {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    padding: 30px 15px;
+  }
+  &__rights {
+    border-top: 2px solid $title-bg;
+    text-align: center;
+    padding: 30px 0;
+  }
+  &__right {
+    font-size: 12px;
+    color: $gray;
+  }
+}
